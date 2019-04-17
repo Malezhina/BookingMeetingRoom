@@ -9,6 +9,10 @@ namespace Atos.Models
     // В профиль пользователя можно добавить дополнительные данные, если указать больше свойств для класса ApplicationUser. Подробности см. на странице https://go.microsoft.com/fwlink/?LinkID=317594.
     public class ApplicationUser : IdentityUser
     {
+        public string Surname { get; set; }
+
+        public string Name { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Обратите внимание, что authenticationType должен совпадать с типом, определенным в CookieAuthenticationOptions.AuthenticationType
@@ -20,6 +24,10 @@ namespace Atos.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<MeetingRoom> MeetingRooms { get; set; }
+
+        public DbSet<Event> Events { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

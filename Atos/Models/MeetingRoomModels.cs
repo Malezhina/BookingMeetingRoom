@@ -19,7 +19,7 @@ namespace Atos.Models
 
         [Required]
         [Display(Name = "Количество кресел")]
-        public uint NumberOfSeats { get; set; }
+        public int NumberOfSeats { get; set; }
 
         [Required]
         [Display(Name = "Наличие проектора")]

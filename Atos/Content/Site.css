@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background: #e5e4e4;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -22,3 +23,59 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.roomList {
+    overflow: auto;
+    background: #4f4d4d;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    box-shadow: 0 0 20px #000000;
+}
+.img {
+    display: inline-block;
+    height: 70px;
+    width: 70px;
+    margin: 5px;
+    vertical-align:top;
+}
+    .img img {
+        max-height: 100%;
+        width: auto;
+        box-shadow: 0 0 10px #000000;
+    }
+
+
+.infoRoom {
+    display: inline-block;
+    float: left;
+}
+
+.imgRoom {
+    display: inline-block;
+    float: right;
+}
+
+.MeetingRoom {
+    overflow:auto;
+    background: linear-gradient(#8b8a8a, #b4b4b4);
+    border-radius: 10px;
+    margin: 7px 0px;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 16px;
+    font-style: oblique;
+    box-shadow: 0 0 10px #000000;
+}
+
+    .MeetingRoom a {
+        font-size: 17px;
+        color: #000000;
+        font-weight: 700;
+    }
+
+.footer{
+    margin-left: 50px;
+}
+
+

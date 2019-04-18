@@ -1,0 +1,39 @@
+﻿@model List<Atos.Models.MeetingRoom>
+
+@{
+    ViewBag.Title = "Переговорные комнаты";
+}
+
+<div class="formRoomList">
+    <div class="col-xs-12 col-sm-11 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+        <div class="roomList">
+            @foreach (var room in Model)
+            {
+                <div class="MeetingRoom">
+                    <div class="infoRoom">
+                        <a asp-action="OpenRoom" asp-route-id="@room.Id">@room.NameRoom</a>
+                        <p>@room.NumberOfSeats мест</p>
+                    </div>
+                    <div class="imgRoom">
+                        <div class="img">
+                            @if (room.Projector)
+                            {
+                                <img src="~/Content/projector.jpg">
+
+                            }
+                        </div>
+                        <div class="img">
+                            @if (room.MarkerBoard)
+                            {
+                                <img src="~/Content/markerBoard.jpg">
+
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+

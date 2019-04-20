@@ -1,0 +1,63 @@
+﻿@model Tuple<Atos.Models.MeetingRoom, List<Atos.Models.Event>>
+
+@{
+    ViewBag.Title = Model.Item1.NameRoom;
+}
+
+<div class="col-xs-12 col-sm-11 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+    <h3 class="nameRoom">@Model.Item1.NameRoom</h3>
+    <div class="infoSelectedRoom">
+        <p class="numberSeats">В комнате <b>@Model.Item1.NumberOfSeats</b> мест</p>
+        <div class="equipment">
+            <div class="projector">
+                <div class="equipmentImg">
+                    @if (Model.Item1.Projector)
+                    {
+                        <img src="~/Content/checkmark.png">
+                    }
+                    else
+                    {
+                        <img src="~/Content/cross.jpg">
+                    }
+                </div>
+                <div class="equipmentInfo">
+                    <p>Проектор</p>
+                </div>
+            </div>
+            <div class="markerBoard">
+                <div class="equipmentImg">
+                    @if (Model.Item1.MarkerBoard)
+                    {
+                        <img src="~/Content/checkmark.png">
+                    }
+                    else
+                    {
+                        <img src="~/Content/cross.jpg">
+                    }
+                </div>
+                <div class="equipmentInfo">
+                    <p>Маркерная доска</p>
+                </div>
+            </div>
+            <p>@Model.Item1.Description</p>
+        </div>
+    </div>
+
+    @using (Ajax.BeginForm("DisplayListEvent", new AjaxOptions { UpdateTargetId = "eventList" }))
+    {
+        <input for="StartEvent" type="date" name="date" value="@DateTime.Today.ToString("yyyy-MM-dd")"
+               max="@DateTime.Today.AddMonths(3).ToString("yyyy-MM-dd")" min="@DateTime.Today.ToString("yyyy-MM-dd")">
+        <input type="hidden" name="id" value=@Model.Item1.Id />
+        <input type="submit" value="Показать" />
+    }
+
+    <div id="eventList">
+        @Html.Partial("DisplayListEvent", Model.Item2)
+    </div>
+
+    <div class="bookingRoom">
+        @Html.ActionLink("Забронировать", "BookingRoom", "Employee", new { id = Model.Item1.Id }, null)
+    </div>
+</div>
+@Scripts.Render("~/Scripts/jquery-3.3.1.js")
+@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")

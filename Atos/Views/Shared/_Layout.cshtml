@@ -1,12 +1,14 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title – приложение ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap-datetimepicker.min.css" />
 
 </head>
 <body>
@@ -19,7 +21,26 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
+                    }
+                    @if (User.IsInRole("employee"))
+                    {
+                        <li>@Html.ActionLink("Переговорные комнаты", "Index", "Employee")</li>
+                    }
+                    else if (User.IsInRole("officeManager"))
+                    {
+                        <li>@Html.ActionLink("Переговорные комнаты", "Index", "OfficeManager")</li>
+                    }
+                    @if (User.IsInRole("employee"))
+                    {
+                        <li>@Html.ActionLink("История бронирований", "BookingHistory", "Employee")</li>
+                    }
+                    else if (User.IsInRole("officeManager"))
+                    {
+                        <li>@Html.ActionLink("Управление ролями", "RoleManagement", "OfficeManager")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

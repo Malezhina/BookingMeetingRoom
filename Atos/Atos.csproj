@@ -189,9 +189,18 @@
     <Compile Include="Migrations\201904181620434_Add_NumberOfSeats.Designer.cs">
       <DependentUpon>201904181620434_Add_NumberOfSeats.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904200848358_Add_in_Event_field_NameUser.cs" />
+    <Compile Include="Migrations\201904200848358_Add_in_Event_field_NameUser.Designer.cs">
+      <DependentUpon>201904200848358_Add_in_Event_field_NameUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904201215314_Change_in_Event_field_IsConfirmed.cs" />
+    <Compile Include="Migrations\201904201215314_Change_in_Event_field_IsConfirmed.Designer.cs">
+      <DependentUpon>201904201215314_Change_in_Event_field_IsConfirmed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AppDbInitializer.cs" />
+    <Compile Include="Models\HelperModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MeetingRoomModels.cs" />
@@ -209,17 +218,29 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="libman.json" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-3.4.2.debug.js" />
+    <Content Include="Scripts\knockout-3.4.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\r.js" />
+    <Content Include="Scripts\require.js" />
+    <Content Include="Scripts\text.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -253,10 +274,16 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Employee\OpenRoom.cshtml" />
+    <Content Include="Views\Employee\DisplayListEvent.cshtml" />
+    <Content Include="Views\OfficeManager\Index.cshtml" />
+    <Content Include="Views\Employee\BookingHistory.cshtml" />
+    <Content Include="Views\OfficeManager\CreateRoom.cshtml" />
+    <Content Include="Views\OfficeManager\EditRoom.cshtml" />
+    <Content Include="Views\Employee\BookingRoom.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\OfficeManager\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -277,6 +304,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904181620434_Add_NumberOfSeats.resx">
       <DependentUpon>201904181620434_Add_NumberOfSeats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904200848358_Add_in_Event_field_NameUser.resx">
+      <DependentUpon>201904200848358_Add_in_Event_field_NameUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904201215314_Change_in_Event_field_IsConfirmed.resx">
+      <DependentUpon>201904201215314_Change_in_Event_field_IsConfirmed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

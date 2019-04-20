@@ -1,4 +1,4 @@
-﻿@model List<Atos.Models.MeetingRoom>
+﻿@model List<Atos.Models.MeetingRoomHelper>
 
 @{
     ViewBag.Title = "Переговорные комнаты";
@@ -11,8 +11,29 @@
             {
                 <div class="MeetingRoom">
                     <div class="infoRoom">
-                        <a asp-action="OpenRoom" asp-route-id="@room.Id">@room.NameRoom</a>
+                        @Html.ActionLink(room.NameRoom, "OpenRoom", "Employee", new { id = room.Id}, null)
                         <p>@room.NumberOfSeats мест</p>
+                        <div class="timeImg">
+                            <img src="~/Content/clock.jpg">
+                        </div>
+                        <div class="timeInfo">
+                            @if (room.StartFirstEvent != DateTime.MinValue)
+                            {
+                                if (room.StartFirstEvent.ToShortDateString() == room.StopFirstEvent.ToShortDateString())
+                                {
+                                    <p>Время: @room.StartFirstEvent.ToShortTimeString() - @room.StopFirstEvent.ToShortTimeString()</p>
+                                }
+                                else
+                                {
+                                    <p>Время: <b>@room.StartFirstEvent.ToShortTimeString()</b> @room.StartFirstEvent.ToShortDateString() - 
+                                        <b>@room.StopFirstEvent.ToShortTimeString()</b> @room.StopFirstEvent.ToShortDateString()</p>
+                                }
+                            }
+                            else
+                            {
+                                <p>Аудитория свободна</p>
+                            }
+                        </div>
                     </div>
                     <div class="imgRoom">
                         <div class="img">
@@ -31,7 +52,6 @@
                         </div>
                     </div>
                 </div>
-
             }
         </div>
     </div>

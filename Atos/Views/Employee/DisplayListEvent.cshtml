@@ -1,0 +1,34 @@
+﻿@model List<Atos.Models.Event>
+<div id="seacrhListEvents">
+    <p class="reservedTime">Зарезервированное время</p>
+    <table>
+        @foreach (var events in Model)
+        {
+            <tr>
+                @if (events.StartEvent.ToShortDateString() == events.StopEvent.ToShortDateString())
+                {
+                    <td>
+                        @events.StartEvent.ToShortDateString()
+                    </td>
+                    <td>
+                        @events.StartEvent.ToShortTimeString() - @events.StopEvent.ToShortTimeString()
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @events.StartEvent.ToShortTimeString() @events.StartEvent.ToShortDateString()
+                    </td>
+                    <td>
+                        @events.StopEvent.ToShortTimeString() @events.StopEvent.ToShortDateString()
+                    </td>
+                }
+
+                <td>
+                    @events.NameUser
+                </td>
+            </tr>
+
+        }
+    </table>
+</div>

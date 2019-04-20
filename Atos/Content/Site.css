@@ -78,4 +78,75 @@ textarea {
     margin-left: 50px;
 }
 
+.equipmentImg {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    margin: 5px;
+    vertical-align: top;
+    box-shadow: 0 0 5px #000000;
+}
+    .equipmentImg img {
+        max-height: 100%;
+        width: auto;
+        box-shadow: 0 0 10px #000000;
+    }
 
+.equipmentInfo {
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.nameRoom {
+    text-align: center;
+    font-style: oblique;
+    text-decoration: underline;
+    margin-bottom: 20px;
+}
+.numberSeats{
+    font-size: 16px;
+    font-style: oblique;
+}
+
+.projector, .markerBoard {
+    box-shadow: 0 0 5px #000000;
+    margin:3px;
+    background:#808080;
+    color: #fff;
+    font-style: oblique;
+}
+
+.timeImg {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    margin: 5px;
+    vertical-align: top;
+    box-shadow: 0 0 5px #000000;
+}
+
+    .timeImg img {
+        max-height: 100%;
+        width: auto;
+        box-shadow: 0 0 10px #000000;
+    }
+
+.timeInfo{
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.createRoom {
+    margin: 12px 0px;
+    padding: 10px 0px;
+}
+
+    .createRoom a {
+        color: #fff;
+        background: linear-gradient(#000000, #393838);
+        box-shadow: 0 0 10px #000000;
+        border-radius: 10px;
+        font-size: 16px;
+        padding: 10px 15px;
+        text-decoration: none;
+    }

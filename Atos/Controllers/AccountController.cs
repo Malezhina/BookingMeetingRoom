@@ -79,7 +79,14 @@ namespace Atos.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    /*using (var _context = new ApplicationDbContext())
+                    {
+                        var userId = _context.Users.Where(u => u.UserName == model.Email).SingleOrDefault().Id;
+                      //  var role = _context.Roles.Select(r => r.Users.Where(u => u.UserId == userId));
+                       // var roleName = _context.Roles.Select(r => new { r.Name, r.Id }).Where( m => m.Id == roleId);
+                    }
+                    */
+                        return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -164,7 +171,7 @@ namespace Atos.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Подтверждение учетной записи", "Подтвердите вашу учетную запись, щелкнув <a href=\"" + callbackUrl + "\">здесь</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Employee");
                 }
                 AddErrors(result);
             }

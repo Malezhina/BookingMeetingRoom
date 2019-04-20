@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Atos.Models
 {
-    public class MeetingRoom
+    public class MeetingRoomHelper
     {
         public int Id { get; set; }
 
@@ -28,34 +28,13 @@ namespace Atos.Models
         [Required]
         [Display(Name = "Наличие маркерной доски")]
         public bool MarkerBoard { get; set; }
-    }
-
-    public class Event
-    {
-        public int Id { get; set; }
 
         [Required]
-        [Display(Name = "Название мероприятия")]
-        public string NameEvent { get; set; }
+        [Display(Name = "Время начала первого бронирования комнаты")]
+        public DateTime StartFirstEvent { get; set; }
 
         [Required]
-        [Display(Name = "Начало мероприятия")]
-        public DateTime StartEvent { get; set; }
-
-        [Required]
-        [Display(Name = "Конец мероприятия")]
-        public DateTime StopEvent { get; set; }
-
-        public bool? IsConfirmed { get; set; }
-
-        public int MeetingRoomId { get; set; }
-
-        public MeetingRoom MeetingRoom { get; set;}
-
-        public string ApplicationUserId { get; set; }
-
-        public ApplicationUser ApplicationUser { get; set; }
-
-        public string NameUser { get; set; }
+        [Display(Name = "Время окончания первого бронирования комнаты")]
+        public DateTime StopFirstEvent { get; set; }
     }
 }

@@ -11,7 +11,7 @@
             {
                 <div class="MeetingRoom">
                     <div class="infoRoom">
-                        @Html.ActionLink(room.NameRoom, "OpenRoom", "Employee", new { id = room.Id}, null)
+                        @Html.ActionLink(room.NameRoom, "OpenRoom", "Employee", new { id = room.Id }, null)
                         <p>@room.NumberOfSeats мест</p>
                         <div class="timeImg">
                             <img src="~/Content/clock.jpg">
@@ -21,12 +21,14 @@
                             {
                                 if (room.StartFirstEvent.ToShortDateString() == room.StopFirstEvent.ToShortDateString())
                                 {
-                                    <p>Время: @room.StartFirstEvent.ToShortTimeString() - @room.StopFirstEvent.ToShortTimeString()</p>
+                                    <p>Время: @room.StartFirstEvent.ToShortTimeString() - @room.StopFirstEvent.ToShortTimeString() @room.StartFirstEvent.ToShortDateString()</p>
                                 }
                                 else
                                 {
-                                    <p>Время: <b>@room.StartFirstEvent.ToShortTimeString()</b> @room.StartFirstEvent.ToShortDateString() - 
-                                        <b>@room.StopFirstEvent.ToShortTimeString()</b> @room.StopFirstEvent.ToShortDateString()</p>
+                                    <p>
+                                        Время: <b>@room.StartFirstEvent.ToShortTimeString()</b> @room.StartFirstEvent.ToShortDateString() -
+                                        <b>@room.StopFirstEvent.ToShortTimeString()</b> @room.StopFirstEvent.ToShortDateString()
+                                    </p>
                                 }
                             }
                             else

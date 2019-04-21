@@ -231,16 +231,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\knockout-3.4.2.debug.js" />
-    <Content Include="Scripts\knockout-3.4.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\moment-with-locales.js" />
-    <Content Include="Scripts\moment-with-locales.min.js" />
-    <Content Include="Scripts\moment.js" />
-    <Content Include="Scripts\moment.min.js" />
-    <Content Include="Scripts\r.js" />
-    <Content Include="Scripts\require.js" />
-    <Content Include="Scripts\text.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -281,6 +272,9 @@
     <Content Include="Views\OfficeManager\CreateRoom.cshtml" />
     <Content Include="Views\OfficeManager\EditRoom.cshtml" />
     <Content Include="Views\Employee\BookingRoom.cshtml" />
+    <Content Include="Views\OfficeManager\BookingListEvents.cshtml" />
+    <Content Include="Views\OfficeManager\DeleteRoom.cshtml" />
+    <Content Include="Views\OfficeManager\RoleManagement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

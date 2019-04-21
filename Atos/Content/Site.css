@@ -150,3 +150,7 @@ textarea {
         padding: 10px 15px;
         text-decoration: none;
     }
+    .createRoom a:hover {
+        text-decoration: none;
+        color: #fff;
+    }

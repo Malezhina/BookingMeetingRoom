@@ -1,7 +1,33 @@
-﻿
+﻿@model List<Atos.Models.UserHelper>
+
 @{
     ViewBag.Title = "Управление ролями";
 }
 
-<h2>RoleManagement</h2>
+<h3>Назначение на роль "Офис менеджер"</h3>
 
+<div id="roleManagement">
+    @Html.Partial("RoleManagementList", Model)
+</div>
+
+@Scripts.Render("~/Scripts/jquery-3.3.1.js")
+@Scripts.Render("~/Scripts/jquery-3.3.1.min.js")
+@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+<script>
+   function loadPartialView() {
+   $.ajax({
+    url: "@Url.Action("RoleManagementList", "OfficeManager")",
+    type: 'GET',
+    dataType: 'html',
+    success: function(result) {
+        $('#roleManagement').html(result);
+             }
+    });
+    }
+$(function() {
+
+   loadPartialView();
+   window.setInterval("loadPartialView()", 3000);
+
+});
+</script>

@@ -1,0 +1,19 @@
+﻿@model List<Atos.Models.UserHelper>
+
+@foreach (var user in Model)
+{
+    <p>@user.Surname @user.Name</p>
+    if (user.Role != "officeManager")
+    {
+        <p>Роль: "Сотрудник"</p>
+        using (Ajax.BeginForm("AssignmentRole", new AjaxOptions { }))
+        {
+            <input type="hidden" name="id" value=@user.Id />
+            <input type="submit" value="Назначить" onclick="this.style.display='none'" />
+        }
+    }
+    else
+    {
+        <p>Роль: "Офис менеджер"</p>
+    }
+}

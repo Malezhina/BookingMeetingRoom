@@ -79,14 +79,23 @@ namespace Atos.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    /*using (var _context = new ApplicationDbContext())
+                    using (var _context = new ApplicationDbContext())
                     {
-                        var userId = _context.Users.Where(u => u.UserName == model.Email).SingleOrDefault().Id;
-                      //  var role = _context.Roles.Select(r => r.Users.Where(u => u.UserId == userId));
-                       // var roleName = _context.Roles.Select(r => new { r.Name, r.Id }).Where( m => m.Id == roleId);
+                        var user = _context.Users.Where(u => u.UserName == model.Email).SingleOrDefault();
+
+                        var roleId = user.Roles.Where(r => r.UserId == user.Id).ToList();
+
+                        foreach(var id in roleId)
+                        {
+                            var roleName = _context.Roles.Where(r => r.Id == id.RoleId).SingleOrDefault().Name;
+                            if (roleName == "officeManager")
+                            {
+                                return RedirectToAction("Index", "OfficeManager");
+                            }
+                        }
+
+                        return RedirectToAction("Index", "Employee");
                     }
-                    */
-                        return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

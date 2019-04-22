@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="~/Content/bootstrap-datetimepicker.min.css" />
 
 </head>
-<body>
+<body id="body">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -25,23 +25,17 @@
                     {
                         <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
                     }
-                    @if (User.IsInRole("employee"))
+                    @if (User.IsInRole("officeManager"))
                     {
-                        <li>@Html.ActionLink("Переговорные комнаты", "Index", "Employee")</li>
-                    }
-                    else if (User.IsInRole("officeManager"))
-                    {
-                        <li>@Html.ActionLink("Переговорные комнаты", "Index", "OfficeManager")</li>
-                    }
-                    @if (User.IsInRole("employee"))
-                    {
-                        <li>@Html.ActionLink("История бронирований", "BookingHistory", "Employee")</li>
-                    }
-                    else if (User.IsInRole("officeManager"))
-                    {
+                        <li>@Html.ActionLink("Главная страница", "Index", "OfficeManager")</li>
                         <li>@Html.ActionLink("Управление ролями", "RoleManagement", "OfficeManager")</li>
                     }
-                </ul>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Бронирование", "Index", "Employee")</li>
+                        <li>@Html.ActionLink("История бронирований", "BookingHistory", "Employee")</li>
+                    }
+                    </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

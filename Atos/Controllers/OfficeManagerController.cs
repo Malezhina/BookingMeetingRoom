@@ -1,4 +1,6 @@
 ﻿using Atos.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +13,7 @@ namespace Atos.Controllers
     {
         // GET: OfficeManager
         //Переговорные комнаты.
+        [Authorize(Roles = "officeManager")]
         public ActionResult Index()
         {
             List<MeetingRoom> meetingRooms;
@@ -33,22 +36,102 @@ namespace Atos.Controllers
             return View(tuple);
         }
 
-        [HttpGet]
         //Управление ролями.
+        [Authorize(Roles = "officeManager")]
         public ActionResult RoleManagement()
         {
-            return View();
+            List<UserHelper> userList = new List<UserHelper>();
+
+            using (var _context = new ApplicationDbContext())
+            {
+                var users = _context.Users.Where(u => u.UserName != User.Identity.Name)
+                    .OrderBy(u => u.Surname).ThenBy(u => u.Name).ToList();
+
+                foreach (var user in users)
+                {
+                    UserHelper userHelper = new UserHelper();
+
+                    var roleId = user.Roles.Where(r => r.UserId == user.Id).Select(r => r.RoleId).ToList();
+
+                    if (roleId.Count() == 2)
+                    {
+                        userHelper.Role = "officeManager";
+                    }
+                    else
+                    {
+                        userHelper.Role = "employee";
+                    }
+                    userHelper.Id = user.Id;
+                    userHelper.Surname = user.Surname;
+                    userHelper.Name = user.Name;
+
+                    userList.Add(userHelper);
+                }
+            }
+
+            return View(userList);
         }
 
-        [HttpGet]
+        //Частичное представление для формы управления ролями.
+        [Authorize(Roles = "officeManager")]
+        public ActionResult RoleManagementList()
+        {
+            List<UserHelper> userList = new List<UserHelper>();
+
+            using (var _context = new ApplicationDbContext())
+            {
+                var users = _context.Users.Where(u => u.UserName != User.Identity.Name)
+                    .OrderBy(u => u.Surname).ThenBy(u => u.Name).ToList();
+
+                foreach (var user in users)
+                {
+                    UserHelper userHelper = new UserHelper();
+
+                    var roleId = user.Roles.Where(r => r.UserId == user.Id).Select(r => r.RoleId).ToList();
+                    
+                    if(roleId.Count() == 2)
+                    {
+                        userHelper.Role = "officeManager";
+                    }
+                    else
+                    {
+                        userHelper.Role = "employee";
+                    }
+                    userHelper.Id = user.Id;
+                    userHelper.Surname = user.Surname;
+                    userHelper.Name = user.Name;
+
+                    userList.Add(userHelper);
+                }
+            }
+
+            return PartialView(userList);
+        }
+
+        //Назначение роли "Офис менеджер".
+        public void AssignmentRole(string id)
+        {
+            using (var _context = new ApplicationDbContext())
+            {
+                var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(_context));
+
+                userManager.AddToRole(id, "officeManager");
+
+                _context.SaveChanges();
+            }
+        }
+
         //Создание комнаты.
+        [HttpGet]
+        [Authorize(Roles = "officeManager")]
         public ActionResult CreateRoom()
         {
             return View();
         }
 
-        [HttpPost]
         //Создание комнаты.
+        [HttpPost]
+        [Authorize(Roles = "officeManager")]
         public ActionResult CreateRoom(MeetingRoom meetingRoom)
         {
             if (meetingRoom.NumberOfSeats <= 0)
@@ -67,8 +150,9 @@ namespace Atos.Controllers
             return View(meetingRoom);
         }
 
-        [HttpGet]
         //Редактирование комнаты.
+        [HttpGet]
+        [Authorize(Roles = "officeManager")]
         public ActionResult EditRoom(int id)
         {
             MeetingRoom meetingRoom;
@@ -79,8 +163,9 @@ namespace Atos.Controllers
             return View(meetingRoom);
         }
 
-        [HttpPost]
         //Редактирование комнаты.
+        [HttpPost]
+        [Authorize(Roles = "officeManager")]
         public ActionResult EditRoom(MeetingRoom meetingRoom)
         {
 
@@ -101,6 +186,7 @@ namespace Atos.Controllers
         }
 
         //Список заявок бронирований на подтверждение.
+        [Authorize(Roles = "officeManager")]
         public ActionResult BookingListEvents()
         {
             List<Event> events;
@@ -119,6 +205,8 @@ namespace Atos.Controllers
         }
 
         //Подтверждение или отклонение заявки.
+        [HttpGet]
+        [Authorize(Roles = "officeManager")]
         public void BookingConfirmation(int idEvent, string confirmation)
         {
             using (var _context = new ApplicationDbContext())
@@ -137,8 +225,9 @@ namespace Atos.Controllers
             }
         }
 
-        [HttpGet]
         //Удаление комнаты.
+        [HttpGet]
+        [Authorize(Roles = "officeManager")]
         public ActionResult DeleteRoom(int id)
         {
             MeetingRoom meetingRoom;
@@ -149,8 +238,9 @@ namespace Atos.Controllers
             return View(meetingRoom);
         }
 
-        [HttpPost]
         //Удаление комнаты.
+        [HttpPost]
+        [Authorize(Roles = "officeManager")]
         public ActionResult DeleteRoom(MeetingRoom meetingRoom)
         {
             using (var _context = new ApplicationDbContext())

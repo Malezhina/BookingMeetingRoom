@@ -2,38 +2,38 @@
 
 @foreach (var eventRoom in Model)
 {
-<div class="bookingListEvent">
-    <div class="nameRoomInList">
-        @eventRoom.MeetingRoom.NameRoom
-    </div>
-    <div>
-        @eventRoom.NameEvent
-    </div>
-    <div>
-        @if (eventRoom.StartEvent.ToShortDateString() == eventRoom.StopEvent.ToShortDateString())
-        {
-            <p>
-                @eventRoom.StartEvent.ToShortTimeString() - @eventRoom.StopEvent.ToShortTimeString()
-                @eventRoom.StartEvent.ToShortDateString()
-            </p>
-        }
-        else
-        {
-            <p>
-                @eventRoom.StartEvent.ToShortTimeString() @eventRoom.StartEvent.ToShortDateString() -
-                @eventRoom.StopEvent.ToShortTimeString() @eventRoom.StopEvent.ToShortDateString()
-            </p>
-        }
-    </div>
-    <div>
-        @eventRoom.NameUser
-    </div>
+    <div class="bookingListEvent">
+        <div class="nameRoomInList">
+            @eventRoom.MeetingRoom.NameRoom
+        </div>
+        <div>
+            @eventRoom.NameEvent
+        </div>
+        <div>
+            @if (eventRoom.StartEvent.ToShortDateString() == eventRoom.StopEvent.ToShortDateString())
+            {
+                <p>
+                    @eventRoom.StartEvent.ToShortTimeString() - @eventRoom.StopEvent.ToShortTimeString()
+                    @eventRoom.StartEvent.ToShortDateString()
+                </p>
+            }
+            else
+            {
+                <p>
+                    @eventRoom.StartEvent.ToShortTimeString() @eventRoom.StartEvent.ToShortDateString() -
+                    @eventRoom.StopEvent.ToShortTimeString() @eventRoom.StopEvent.ToShortDateString()
+                </p>
+            }
+        </div>
+        <div>
+            @eventRoom.NameUser
+        </div>
 
-    @using (Ajax.BeginForm("BookingConfirmation", new AjaxOptions {}))
-    {
-        <input type="hidden" name="idEvent" value=@eventRoom.Id />
-        <input id="confirmation" name="confirmation" type="submit" value="Подтвердить" />
-        <input id="confirmation" name="confirmation" type="submit" value="Отклонить" />
-    }
-</div>
+        @using (Ajax.BeginForm("BookingConfirmation", new AjaxOptions { }))
+        {
+            <input type="hidden" name="idEvent" value=@eventRoom.Id />
+            <input id="confirmation" name="confirmation" type="submit" value="Подтвердить"  onclick="this.style.display='none'"/>
+            <input id="confirmation" name="confirmation" type="submit" value="Отклонить"   onclick="this.style.display='none'"/>
+        }
+    </div>
 }

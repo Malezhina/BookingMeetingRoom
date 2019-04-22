@@ -3,6 +3,9 @@
     padding-bottom: 20px;
     background: #e5e4e4;
 }
+#body {
+    background: #e5e4e4;
+}
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -153,4 +156,41 @@ textarea {
     .createRoom a:hover {
         text-decoration: none;
         color: #fff;
+    }
+
+.btnTemplate {
+    box-shadow: 0 0 12px #000000;
+    background: linear-gradient(#000000, #393838);
+    color: #fff;
+    border-color: #393838;
+    font-size: 14px;
+    border-radius: 7px;
+    padding: 5px 15px;
+}
+
+.rowLogin{
+    background: #393838;
+}
+.center{
+    text-align:center;
+    margin:20px;
+}
+.loginBlock {
+    background: #b4b4b4;
+    box-shadow: 0 0 10px #000000;
+    border-radius: 10px;
+    padding-top: 15px;
+    padding-bottom: 2px;
+    padding-left: 10px;
+}
+.registration a {
+    color: black;
+    font-size: 15px;
+    text-decoration: underline;
+    font-style: oblique;
+}
+
+    .registration a:hover {
+        color: black;
+        font-weight: 700;
     }

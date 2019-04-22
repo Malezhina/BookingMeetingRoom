@@ -13,6 +13,7 @@ namespace Atos.Controllers
         // GET: Employee
         //Отображение списка комнат переговоров.
         [HttpGet]
+        [Authorize]
         public ActionResult Index()
         {
             List<MeetingRoomHelper> roomHelperList = new List<MeetingRoomHelper>();
@@ -54,8 +55,9 @@ namespace Atos.Controllers
             return View(roomHelperList);
         }
 
-        [HttpGet]
         //Открытие экрана с описанием комнаты.
+        [HttpGet]
+        [Authorize]
         public ActionResult OpenRoom(int? id)
         {
             MeetingRoom meetingRoom;
@@ -72,8 +74,9 @@ namespace Atos.Controllers
             return View(tuple);
         }
 
-        [HttpPost]
         //Отображение списка дат и времени уже зарезервированных комнат.
+        [HttpPost]
+        [Authorize]
         public ActionResult DisplayListEvent(int id, DateTime date)
         { 
             List<Event> events;
@@ -92,15 +95,70 @@ namespace Atos.Controllers
             return PartialView(events);
         }
 
-        [HttpGet]
         //История бронирований.
+        [HttpGet]
+        [Authorize]
         public ActionResult BookingHistory()
         {
-            return View();
+            List<Event> events;
+
+            using (var _context = new ApplicationDbContext())
+            {
+                var userId = _context.Users.Where(u => u.UserName == User.Identity.Name).SingleOrDefault().Id;
+
+                events = _context.Events.Where(e => e.ApplicationUserId == userId)
+                    .OrderBy(e => e.StartEvent).ThenBy(e => e.StopEvent).ToList();
+
+                foreach (var eventBooking in events)
+                {
+                    var meetingRoom = _context.MeetingRooms.Where(m => m.Id == eventBooking.MeetingRoomId).SingleOrDefault();
+                    eventBooking.MeetingRoom = meetingRoom;
+                }
+            }
+
+            return View(events);
         }
 
-        [HttpGet]
+        //Частичное представление списка истории бронирований для сотрудника.
+        [Authorize]
+        public ActionResult BookingHistoryList()
+        {
+            List<Event> events;
+
+            using (var _context = new ApplicationDbContext())
+            {
+                var userId = _context.Users.Where(u => u.UserName == User.Identity.Name).SingleOrDefault().Id;
+
+                events = _context.Events.Where(e => e.ApplicationUserId == userId)
+                    .OrderBy(e => e.StartEvent).ThenBy(e => e.StopEvent).ToList();
+
+                foreach(var eventBooking in events)
+                {
+                    var meetingRoom = _context.MeetingRooms.Where(m => m.Id == eventBooking.MeetingRoomId).SingleOrDefault();
+                    eventBooking.MeetingRoom = meetingRoom;
+                }
+            }
+
+            return PartialView(events);
+        }
+
+        //Отмена бронирования мероприятия.
+        public void CancelBookinRoom(int id)
+        {
+            using (var _context = new ApplicationDbContext())
+            {
+                var eventBooking = _context.Events.Where(e => e.Id == id).SingleOrDefault();
+
+                eventBooking.IsConfirmed = false;
+
+                _context.Entry(eventBooking).State = System.Data.Entity.EntityState.Modified;
+                _context.SaveChanges();
+            }
+        }
+
         //Бронирование комнаты.
+        [HttpGet]
+        [Authorize]
         public ActionResult BookingRoom(int id)
         {
             using (var _context = new ApplicationDbContext())
@@ -112,8 +170,9 @@ namespace Atos.Controllers
             return View();
         }
 
-        [HttpPost]
         //Бронирование комнаты.
+        [HttpPost]
+        [Authorize]
         public ActionResult BookingRoom(Event eventRoom, int RoomId, DateTime StartTime, DateTime StopTime)
         {
             eventRoom.StartEvent = eventRoom.StartEvent.AddHours(StartTime.Hour).AddMinutes(StartTime.Minute);

@@ -1,7 +1,31 @@
-﻿
+﻿@model List<Atos.Models.Event>
 @{
     ViewBag.Title = "История бронирований";
 }
 
-<h2>BookingHistory</h2>
+<div id="bookingHistory">
+    @Html.Partial("BookingHistoryList", Model)
+</div>
+
+
+
+@Scripts.Render("~/Scripts/jquery-3.3.1.js")
+@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+<script>
+   function loadPartialView() {
+   $.ajax({
+    url: "@Url.Action("BookingHistoryList", "Employee")",
+    type: 'GET',
+    dataType: 'html',
+    success: function(result) {
+        $('#bookingHistory').html(result);
+             }
+   });
+    }
+
+    $(function() {
+        loadPartialView();
+        window.setInterval("loadPartialView()", 5000);
+});
+</script>
 

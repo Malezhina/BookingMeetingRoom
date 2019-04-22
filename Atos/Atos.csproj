@@ -275,6 +275,8 @@
     <Content Include="Views\OfficeManager\BookingListEvents.cshtml" />
     <Content Include="Views\OfficeManager\DeleteRoom.cshtml" />
     <Content Include="Views\OfficeManager\RoleManagement.cshtml" />
+    <Content Include="Views\Employee\BookingHistoryList.cshtml" />
+    <Content Include="Views\OfficeManager\RoleManagementList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

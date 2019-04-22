@@ -32,8 +32,8 @@ namespace Atos.Models
             // если создание пользователя прошло успешно
             if (result.Succeeded)
             {
-                // добавляем для пользователя роль
                 userManager.AddToRole(admin.Id, role1.Name);
+                userManager.AddToRole(admin.Id, role2.Name);
             }
 
             base.Seed(context);

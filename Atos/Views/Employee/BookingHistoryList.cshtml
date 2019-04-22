@@ -1,0 +1,57 @@
+﻿@model List<Atos.Models.Event>
+
+<div class="">
+    @foreach (var eventBooking in Model)
+    {
+        <div class="">
+            <p>@eventBooking.MeetingRoom.NameRoom </p>
+            <p>@eventBooking.NameEvent</p>
+            @if (eventBooking.StartEvent.ToShortDateString() == eventBooking.StopEvent.ToShortDateString())
+            {
+                <p>
+                    @eventBooking.StartEvent.ToShortTimeString() - @eventBooking.StopEvent.ToShortTimeString()
+                    @eventBooking.StartEvent.ToShortDateString()
+                </p>
+            }
+            else
+            {
+                <p>
+                    @eventBooking.StartEvent.ToShortTimeString() @eventBooking.StartEvent.ToShortDateString() -
+                    @eventBooking.StopEvent.ToShortTimeString() @eventBooking.StopEvent.ToShortDateString()
+                </p>
+            }
+        </div>
+        <div class="">
+            @if (eventBooking.IsConfirmed is null)
+            {
+                <p>В обработке...</p>
+                if (eventBooking.StartEvent >= DateTime.Now)
+                {
+                    using (Ajax.BeginForm("CancelBookinRoom", new AjaxOptions { }))
+                    {
+                        <input type="hidden" name="id" value=@eventBooking.Id />
+                        <input type="submit" value="Отменить" onclick="this.style.display='none'"/>
+                    }
+                }
+
+            }
+            else if (eventBooking.IsConfirmed == true)
+            {
+                <p>Подтверждено</p>
+                if (eventBooking.StartEvent >= DateTime.Now)
+                {
+                    using (Ajax.BeginForm("CancelBookinRoom", new AjaxOptions { }))
+                    {
+                        <input type="hidden" name="id" value=@eventBooking.Id />
+                        <input type="submit" value="Отменить" onclick="this.style.display='none'"/>
+                    }
+                }
+            }
+            else
+            {
+                <p>Отклонено</p>
+            }
+
+        </div>
+    }
+</div>

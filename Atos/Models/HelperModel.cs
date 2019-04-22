@@ -37,4 +37,18 @@ namespace Atos.Models
         [Display(Name = "Время окончания первого бронирования комнаты")]
         public DateTime StopFirstEvent { get; set; }
     }
+
+    public class UserHelper
+    {
+        public string Id { get; set; }
+
+        [Display(Name = "Фамилия")]
+        public string Surname { get; set; }
+
+        [Display(Name = "Имя")]
+        public string Name { get; set; }
+
+        [Display(Name = "Роль")]
+        public string Role { get; set; }
+    } 
 }

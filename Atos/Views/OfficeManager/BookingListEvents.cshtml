@@ -13,27 +13,34 @@
             @if (eventRoom.StartEvent.ToShortDateString() == eventRoom.StopEvent.ToShortDateString())
             {
                 <p>
-                    @eventRoom.StartEvent.ToShortTimeString() - @eventRoom.StopEvent.ToShortTimeString()
+                    <b class="firstWord">Время проведения: </b>
+                    <b>@eventRoom.StartEvent.ToShortTimeString() - @eventRoom.StopEvent.ToShortTimeString()</b>
                     @eventRoom.StartEvent.ToShortDateString()
                 </p>
             }
             else
             {
                 <p>
-                    @eventRoom.StartEvent.ToShortTimeString() @eventRoom.StartEvent.ToShortDateString() -
-                    @eventRoom.StopEvent.ToShortTimeString() @eventRoom.StopEvent.ToShortDateString()
+                    <b class="firstWord">Время проведения: </b>
+                    <b>@eventRoom.StartEvent.ToShortTimeString()</b> @eventRoom.StartEvent.ToShortDateString() -
+                    <b>@eventRoom.StopEvent.ToShortTimeString()</b> @eventRoom.StopEvent.ToShortDateString()
                 </p>
             }
         </div>
         <div>
-            @eventRoom.NameUser
+            <p>
+                <b class="firstWord">Сотрудник: </b>
+                @eventRoom.NameUser
+            </p>
         </div>
 
         @using (Ajax.BeginForm("BookingConfirmation", new AjaxOptions { }))
         {
             <input type="hidden" name="idEvent" value=@eventRoom.Id />
-            <input id="confirmation" name="confirmation" type="submit" value="Подтвердить"  onclick="this.style.display='none'"/>
-            <input id="confirmation" name="confirmation" type="submit" value="Отклонить"   onclick="this.style.display='none'"/>
+            <div class="groupBtn">
+                <input class="btnTemplate " id="confirmation" name="confirmation" type="submit" value="Подтвердить" onclick="this.style.display='none'" />
+                <input class="btnTemplate" id="confirmation" name="confirmation" type="submit" value="Отклонить" onclick="this.style.display='none'" />
+            </div>
         }
     </div>
 }

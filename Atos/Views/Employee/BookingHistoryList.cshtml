@@ -1,57 +1,65 @@
 ﻿@model List<Atos.Models.Event>
 
-<div class="">
+<div class="TempList">
     @foreach (var eventBooking in Model)
     {
-        <div class="">
-            <p>@eventBooking.MeetingRoom.NameRoom </p>
-            <p>@eventBooking.NameEvent</p>
-            @if (eventBooking.StartEvent.ToShortDateString() == eventBooking.StopEvent.ToShortDateString())
-            {
-                <p>
-                    @eventBooking.StartEvent.ToShortTimeString() - @eventBooking.StopEvent.ToShortTimeString()
-                    @eventBooking.StartEvent.ToShortDateString()
-                </p>
-            }
-            else
-            {
-                <p>
-                    @eventBooking.StartEvent.ToShortTimeString() @eventBooking.StartEvent.ToShortDateString() -
-                    @eventBooking.StopEvent.ToShortTimeString() @eventBooking.StopEvent.ToShortDateString()
-                </p>
-            }
-        </div>
-        <div class="">
-            @if (eventBooking.IsConfirmed is null)
-            {
-                <p>В обработке...</p>
-                if (eventBooking.StartEvent >= DateTime.Now)
-                {
-                    using (Ajax.BeginForm("CancelBookinRoom", new AjaxOptions { }))
+        <div class="col-xs-12 col-sm-6 col-ml-4 col-lg-3">
+            <div class="histories">
+                <div class="nameRoomInList">
+                    <p>@eventBooking.MeetingRoom.NameRoom </p>
+                    </div>
+                    <p>@eventBooking.NameEvent</p>
+                    @if (eventBooking.StartEvent.ToShortDateString() == eventBooking.StopEvent.ToShortDateString())
                     {
-                        <input type="hidden" name="id" value=@eventBooking.Id />
-                        <input type="submit" value="Отменить" onclick="this.style.display='none'"/>
+                        <p><b class="firstWord">Время проведения: </b>
+                           <b>@eventBooking.StartEvent.ToShortTimeString() - @eventBooking.StopEvent.ToShortTimeString()</b>
+                            @eventBooking.StartEvent.ToShortDateString()
+                        </p>
                     }
-                }
-
-            }
-            else if (eventBooking.IsConfirmed == true)
-            {
-                <p>Подтверждено</p>
-                if (eventBooking.StartEvent >= DateTime.Now)
-                {
-                    using (Ajax.BeginForm("CancelBookinRoom", new AjaxOptions { }))
+                    else
                     {
-                        <input type="hidden" name="id" value=@eventBooking.Id />
-                        <input type="submit" value="Отменить" onclick="this.style.display='none'"/>
+                        <p><b class="firstWord">Время проведения: </b>
+                           <b>@eventBooking.StartEvent.ToShortTimeString()</b> @eventBooking.StartEvent.ToShortDateString() -
+                           <b>@eventBooking.StopEvent.ToShortTimeString()</b> @eventBooking.StopEvent.ToShortDateString()
+                        </p>
                     }
-                }
-            }
-            else
-            {
-                <p>Отклонено</p>
-            }
+                    <div class="">
+                        @if (eventBooking.IsConfirmed is null)
+                        {
+                            <p><b class="firstWord">Статус: </b>В обработке...</p>
+                            if (eventBooking.StartEvent >= DateTime.Now)
+                            {
+                                using (Ajax.BeginForm("CancelBookinRoom", new AjaxOptions { }))
+                                {
+                                    <input type="hidden" name="id" value=@eventBooking.Id />
+                                    <div class="btnRole">
+                                        <input type="submit" class="btnTemplate" value="Отменить" onclick="this.style.display='none'" />
+                                    </div>
+                                }
+                            }
 
-        </div>
+                        }
+                        else if (eventBooking.IsConfirmed == true)
+                        {
+                            <p><b class="firstWord">Статус: </b>Подтверждено</p>
+                            if (eventBooking.StartEvent >= DateTime.Now)
+                            {
+                                using (Ajax.BeginForm("CancelBookinRoom", new AjaxOptions { }))
+                                {
+                                    <input type="hidden" name="id" value=@eventBooking.Id />
+                                    <div class="btnRole">
+                                        <input type="submit" class="btnTemplate" value="Отменить" onclick="this.style.display='none'" />
+                                    </div>
+                                }
+                            }
+                        }
+                        else
+                        {
+                            <p><b class="firstWord">Статус: </b>Отклонено</p>
+                        }
+
+                    </div>
+                </div>
+            </div>
     }
 </div>

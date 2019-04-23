@@ -4,69 +4,73 @@
     ViewBag.Title = "Редактирование комнаты";
 }
 
-<h2>Редактирование информации о переговорной комнате</h2>
+<h2 class="center">Редактирование информации о переговорной комнате</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.NameRoom, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NameRoom, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NameRoom, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.NumberOfSeats, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NumberOfSeats, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NumberOfSeats, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Projector, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Projector)
-                    @Html.ValidationMessageFor(model => model.Projector, "", new { @class = "text-danger" })
+        <div class="col-sm-offset-2 col-sm-8">
+            <div class="roomBlock">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NameRoom, htmlAttributes: new { @class = "control-label col-sm-3" })
+                    <div class="col-sm-8">
+                        @Html.EditorFor(model => model.NameRoom, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NameRoom, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MarkerBoard, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.MarkerBoard)
-                    @Html.ValidationMessageFor(model => model.MarkerBoard, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-sm-3" })
+                    <div class="col-sm-8">
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Сохранить" class="btn btn-default" />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NumberOfSeats, htmlAttributes: new { @class = "control-label col-sm-3" })
+                    <div class="col-sm-8">
+                        @Html.EditorFor(model => model.NumberOfSeats, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NumberOfSeats, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="checkboxRoom">
+                        <div class="col-xs-1 col-xs-offset-5">
+                            @Html.EditorFor(model => model.Projector)
+                            @Html.ValidationMessageFor(model => model.Projector, "", new { @class = "text-danger" })
+                        </div>
+                        @Html.LabelFor(model => model.Projector, htmlAttributes: new { @class = "control-label col-xs-3" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="checkboxRoom">
+                        <div class="col-xs-1 col-xs-offset-5 ">
+                            @Html.EditorFor(model => model.MarkerBoard)
+                            @Html.ValidationMessageFor(model => model.MarkerBoard, "", new { @class = "text-danger" })
+                        </div>
+                        @Html.LabelFor(model => model.MarkerBoard, htmlAttributes: new { @class = "control-label col-xs-3" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Сохранить" class="btnTemplate" />
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Вернуться назад", "Index")
+<div class="col-xs-12">
+    <div class="backLink">
+        @Html.ActionLink("Вернуться назад", "Index")
+    </div>
 </div>

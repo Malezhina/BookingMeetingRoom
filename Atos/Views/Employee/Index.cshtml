@@ -21,12 +21,16 @@
                             {
                                 if (room.StartFirstEvent.ToShortDateString() == room.StopFirstEvent.ToShortDateString())
                                 {
-                                    <p>Время: @room.StartFirstEvent.ToShortTimeString() - @room.StopFirstEvent.ToShortTimeString() @room.StartFirstEvent.ToShortDateString()</p>
+                                    <p>
+                                        <b class="firstWord">Время: </b>
+                                        <b>@room.StartFirstEvent.ToShortTimeString() - @room.StopFirstEvent.ToShortTimeString()</b>
+                                        @room.StartFirstEvent.ToShortDateString()
+                                    </p>
                                 }
                                 else
                                 {
                                     <p>
-                                        Время: <b>@room.StartFirstEvent.ToShortTimeString()</b> @room.StartFirstEvent.ToShortDateString() -
+                                        <b class="firstWord">Время: </b><b>@room.StartFirstEvent.ToShortTimeString()</b> @room.StartFirstEvent.ToShortDateString() -
                                         <b>@room.StopFirstEvent.ToShortTimeString()</b> @room.StopFirstEvent.ToShortDateString()
                                     </p>
                                 }

@@ -1,10 +1,10 @@
 ﻿@model List<Atos.Models.Event>
 <div id="seacrhListEvents">
     <p class="reservedTime">Зарезервированное время</p>
-    <table>
+    <table class="table">
         @foreach (var events in Model)
         {
-            <tr>
+            <tr class="warning">
                 @if (events.StartEvent.ToShortDateString() == events.StopEvent.ToShortDateString())
                 {
                     <td>
@@ -17,10 +17,10 @@
                 else
                 {
                     <td>
-                        @events.StartEvent.ToShortTimeString() @events.StartEvent.ToShortDateString()
+                        <b>@events.StartEvent.ToShortTimeString()</b> @events.StartEvent.ToShortDateString()
                     </td>
                     <td>
-                        @events.StopEvent.ToShortTimeString() @events.StopEvent.ToShortDateString()
+                        <b>@events.StopEvent.ToShortTimeString()</b> @events.StopEvent.ToShortDateString()
                     </td>
                 }
 

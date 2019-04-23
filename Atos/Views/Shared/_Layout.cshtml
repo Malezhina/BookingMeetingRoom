@@ -33,7 +33,7 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Бронирование", "Index", "Employee")</li>
-                        <li>@Html.ActionLink("История бронирований", "BookingHistory", "Employee")</li>
+                        <li>@Html.ActionLink("История бронирования", "BookingHistory", "Employee")</li>
                     }
                     </ul>
                 @Html.Partial("_LoginPartial")

@@ -9,7 +9,7 @@
     }
 }
 
-<h2>@ViewBag.Room</h2>
+<h2 class="center">@ViewBag.Room</h2>
 
 @using (Html.BeginForm())
 {
@@ -17,47 +17,57 @@
 
     <div class="form-horizontal">
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.NameEvent, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NameEvent, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NameEvent, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <div class="col-sm-offset-2 col-sm-8">
+            <div class="roomBlock">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NameEvent, htmlAttributes: new { @class = "control-label col-sm-3" })
+                    <div class="col-sm-8">
+                        @Html.EditorFor(model => model.NameEvent, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NameEvent, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.StartEvent, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input for="StartEvent" type="date" name="StartEvent" value="@DateTime.Today.ToString("yyyy-MM-dd")"
-                       max="@DateTime.Today.AddMonths(3).ToString("yyyy-MM-dd")" min="@DateTime.Today.ToString("yyyy-MM-dd")">
-                <input type="time" name="StartTime" value="@time.ToString("HH:mm")">
-                @Html.ValidationMessageFor(model => model.StartEvent, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.StartEvent, htmlAttributes: new { @class = "control-label col-sm-3" })
+                    <div class="col-sm-8">
+                        <input class="date" for="StartEvent" type="date" name="StartEvent" value="@DateTime.Today.ToString("yyyy-MM-dd")"
+                               max="@DateTime.Today.AddMonths(3).ToString("yyyy-MM-dd")" min="@DateTime.Today.ToString("yyyy-MM-dd")">
+                        <input class="date" type="time" name="StartTime" value="@time.ToString("HH:mm")">
+                        <div>
+                            @Html.ValidationMessageFor(model => model.StartEvent, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.StopEvent, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input for="StopEvent" type="date" name="StopEvent" value="@dateStop.ToString("yyyy-MM-dd")"
-                       max="@dateStop.AddMonths(3).ToString("yyyy-MM-dd")" min="@dateStop.ToString("yyyy-MM-dd")">
-                <input type="time" name="StopTime" value="@time.AddHours(1).ToString("HH:mm")">
-                @Html.ValidationMessageFor(model => model.StopEvent, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.StopEvent, htmlAttributes: new { @class = "control-label col-sm-3" })
+                    <div class="col-sm-8">
+                        <input class="date" for="StopEvent" type="date" name="StopEvent" value="@dateStop.ToString("yyyy-MM-dd")"
+                               max="@dateStop.AddMonths(3).ToString("yyyy-MM-dd")" min="@dateStop.ToString("yyyy-MM-dd")">
+                        <input class="date" type="time" name="StopTime" value="@time.AddHours(1).ToString("HH:mm")">
+                        <div>
+                            @Html.ValidationMessageFor(model => model.StopEvent, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
 
-        <input type="hidden" name="RoomId" value=@ViewBag.RoomId>
+                <input type="hidden" name="RoomId" value=@ViewBag.RoomId>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Забронировать" class="btn btn-default" />
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Забронировать" class="btnTemplate" />
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Вернуться назад", "Index")
+<div class="col-xs-12">
+    <div class="backLink">
+        @Html.ActionLink("Вернуться назад", "Index")
+    </div>
 </div>
 
 <script src="js/jquery.min.js"></script>

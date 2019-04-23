@@ -54,6 +54,10 @@ textarea {
     float: left;
 }
 
+.infoRoom a:hover{
+    color:#000000;
+}
+
 .imgRoom {
     display: inline-block;
     float: right;
@@ -114,7 +118,7 @@ textarea {
 .projector, .markerBoard {
     box-shadow: 0 0 5px #000000;
     margin:3px;
-    background:#808080;
+    background: #808080;
     color: #fff;
     font-style: oblique;
 }
@@ -166,6 +170,7 @@ textarea {
     font-size: 14px;
     border-radius: 7px;
     padding: 5px 15px;
+    margin: 3px;
 }
 
 .rowLogin{
@@ -173,17 +178,22 @@ textarea {
 }
 .center{
     text-align:center;
-    margin:20px;
+    margin:10px;
 }
-.loginBlock {
+.loginBlock, .registrationBlock, .roomBlock {
     background: #b4b4b4;
     box-shadow: 0 0 10px #000000;
     border-radius: 10px;
     padding-top: 15px;
     padding-bottom: 2px;
     padding-left: 10px;
+    text-align: center;
 }
-.registration a {
+
+    .loginBlock input, .registrationBlock input, .registrationBlock a, .roomBlock input{
+        margin: auto;
+    }
+    .registration a {
     color: black;
     font-size: 15px;
     text-decoration: underline;
@@ -194,3 +204,165 @@ textarea {
         color: black;
         font-weight: 700;
     }
+
+#eventListBooking {
+    background: #4f4d4d;
+    border-radius: 10px;
+    margin-top: 63px;
+    padding: 10px;
+    box-shadow: 0 0 20px #000000;
+}
+
+.bookingListEvent {
+    background: linear-gradient(#8b8a8a, #b4b4b4);
+    border-radius: 10px;
+    margin: 7px 0px;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 16px;
+    font-style: oblique;
+    box-shadow: 0 0 10px #000000;
+}
+.groupBtn{
+    margin:auto;
+    padding-top: 10px;
+    text-align:center;
+}
+.confirmation {
+    margin: auto;
+}
+.nameRoomInList{
+    margin-bottom:5px;
+    color:#000000;
+    font-weight:700;
+    text-align:center;
+    text-decoration: underline;
+    font-size: 16px;
+}
+.firstWord{
+    color:#000000;
+}
+.deleteRoom {
+    height: 30px;
+    width: 30px;
+    vertical-align: top;
+    box-shadow: 0 0 5px #000000;
+}
+    .deleteRoom img {
+        max-height: 100%;
+        width: auto;
+        box-shadow: 0 0 10px #000000;
+    }
+
+.userRole {
+    background: #b4b4b4;
+    border-radius: 10px;
+    margin: 7px 0px;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 16px;
+    font-style: oblique;
+    box-shadow: 0 0 10px #000000;
+}
+.btnRole{
+    text-align:center;
+}
+.userName{
+    color:#000000;
+    font-weight: 700;
+    text-align:center;
+}
+.backLink{
+    margin-top: 15px;
+    text-align:center;
+}
+.backLink a{
+    color:#000000;
+    font-style:oblique;
+    font-size: 15px;
+    text-decoration: underline;
+    text-align:center;
+}
+    .backLink a:hover {
+        color: #000000;
+        font-weight: 700;
+    }
+#deleteMeetingRoom dt {
+    float: left;
+    width: 200px;
+    overflow: hidden;
+    clear: left;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.TempList {
+    overflow: auto;
+    background: #4f4d4d;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 5px;
+    box-shadow: 0 0 20px #000000;
+}
+.histories {
+    background: linear-gradient(#8b8a8a, #b4b4b4);
+    border-radius: 10px;
+    margin: 5px 0px;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 16px;
+    font-style: oblique;
+    box-shadow: 0 0 10px #000000;
+}
+
+.descriptionRoom {
+    box-shadow: 0 0 5px #000000;
+    padding: 10px 5px;
+    margin: 3px;
+    background: #808080;
+    color: #fff;
+    font-style: oblique;
+    margin-bottom: 20px;
+}
+
+.date {
+    font-size: 15px;
+    font-weight: 600;
+    color: #393838;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #000000;
+}
+#seacrhListEvents{
+    font-size:15px;
+}
+.reservedTime{
+    font-style:oblique;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 2px;
+}
+.showDate{
+    margin: 40px 0px;
+}
+.bookingRoom{
+    text-align:center;
+}
+
+.bookingRoom a {
+    color: #fff;
+    background: linear-gradient(#000000, #393838);
+    box-shadow: 0 0 10px #000000;
+    border-radius: 10px;
+    font-size: 15px;
+    padding: 10px 15px;
+    text-decoration: none;
+}
+
+    .bookingRoom a:hover {
+        text-decoration: none;
+        color: #fff;
+    }
+table{
+    text-align:center;
+}

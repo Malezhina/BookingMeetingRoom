@@ -1,19 +1,27 @@
 ﻿@model List<Atos.Models.UserHelper>
-
-@foreach (var user in Model)
-{
-    <p>@user.Surname @user.Name</p>
-    if (user.Role != "officeManager")
+<div class="TempList">
+    @foreach (var user in Model)
     {
-        <p>Роль: "Сотрудник"</p>
-        using (Ajax.BeginForm("AssignmentRole", new AjaxOptions { }))
-        {
-            <input type="hidden" name="id" value=@user.Id />
-            <input type="submit" value="Назначить" onclick="this.style.display='none'" />
-        }
+        <div class="col-xs-12 col-sm-4 col-ml-4 col-lg-3">
+            <div class="userRole">
+                <p class="userName">@user.Surname @user.Name</p>
+                @if (user.Role != "officeManager")
+                {
+                    <p><b class="firstWord">Роль:</b> "Сотрудник"</p>
+                    using (Ajax.BeginForm("AssignmentRole", new AjaxOptions { }))
+                    {
+                        <input type="hidden" name="id" value=@user.Id />
+                        <div class="btnRole">
+                            <input type="submit" value="Назначить" class="btnTemplate" onclick="this.style.display='none'" />
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p><b class="firstWord">Роль:</b> "Сотрудник"</p>
+                    <p><b class="firstWord">Роль:</b> "Офис менеджер"</p>
+                }
+            </div>
+        </div>
     }
-    else
-    {
-        <p>Роль: "Офис менеджер"</p>
-    }
-}
+</div>

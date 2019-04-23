@@ -39,16 +39,20 @@
                     <p>Маркерная доска</p>
                 </div>
             </div>
-            <p>@Model.Item1.Description</p>
+            <div class="descriptionRoom">
+                <p>@Model.Item1.Description</p>
+            </div>
         </div>
     </div>
 
     @using (Ajax.BeginForm("DisplayListEvent", new AjaxOptions { UpdateTargetId = "eventList" }))
     {
-        <input for="StartEvent" type="date" name="date" value="@DateTime.Today.ToString("yyyy-MM-dd")"
-               max="@DateTime.Today.AddMonths(3).ToString("yyyy-MM-dd")" min="@DateTime.Today.ToString("yyyy-MM-dd")">
-        <input type="hidden" name="id" value=@Model.Item1.Id />
-        <input type="submit" value="Показать" />
+        <div class="showDate">
+            <input class="date" for="StartEvent" type="date" name="date" value="@DateTime.Today.ToString("yyyy-MM-dd")"
+                   max="@DateTime.Today.AddMonths(3).ToString("yyyy-MM-dd")" min="@DateTime.Today.ToString("yyyy-MM-dd")">
+            <input type="hidden" name="id" value=@Model.Item1.Id />
+            <input type="submit" class="btnTemplate" value="Показать" />
+        </div>
     }
 
     <div id="eventList">
